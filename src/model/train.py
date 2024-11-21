@@ -35,8 +35,8 @@ def get_csvs_df(path):
 
 # TO DO: add function to split data
 def split_data(df):
-    y = df["diabetic"]
-    X = df.drop("diabetic", axis=1)
+    y = df["Diabetic"]
+    X = df.drop("Diabetic", axis=1)
     X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=123)
     return X_train, X_test, y_train, y_test
