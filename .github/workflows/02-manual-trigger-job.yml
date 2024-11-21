@@ -1,4 +1,4 @@
-name: Manually trigger an Azure Machine Learning job1
+name: Manually trigger an Azure Machine Learning job2
 
 on:
   workflow_dispatch:
