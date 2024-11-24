@@ -55,7 +55,7 @@ def parse_args():
                         type=str)
     parser.add_argument("--reg_rate", dest='reg_rate',
                         type=float, default=0.001)
-
+    #Justo pullrequest
     # parse args
     args = parser.parse_args()
 
