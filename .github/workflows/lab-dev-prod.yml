@@ -48,4 +48,5 @@ jobs:
             --set inputs.training_data=azureml:diabetes-prod-folder:1 \
             --set experiment_name=diabetes-data-example-prod \
             --resource-group azure-ml-rg \
-        
+            --workspace-name azure-ml \
+            --stream
