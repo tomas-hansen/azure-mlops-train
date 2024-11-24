@@ -1,0 +1,44 @@
+name: Deploy Azure ML Model
+
+on:
+  push:
+    branches:
+      - main  # Trigger workflow on push to main branch
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install Azure CLI and ML extension
+        run: |
+          az version
+          az extension add -n ml -y  # Ensure ML extension is installed
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+
+      - name: Create or update Azure ML endpoint
+        run: |
+          az ml online-endpoint create \
+            --name diabetes-endpoint \
+            --resource-group azure-ml-rg \
+            --workspace-name azure-ml \
+            --file src/endpoint.yml || az ml online-endpoint update \
+            --name diabetes-endpoint \
+            --resource-group azure-ml-rg \
+            --workspace-name azure-ml
+
+      - name: Deploy model to the endpoint
+        run: |
+          az ml online-deployment create \
+            --name blue-deployment \
+            --endpoint diabetes-endpoint \
+            -f src/deployment.yml \
+            --all-traffic

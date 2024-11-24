@@ -1,0 +1,4 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: diabetes-endpoint
+auth_mode: key  # or aml_token
+description: Endpoint for the diabetes model

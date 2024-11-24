@@ -1,0 +1,7 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue-deployment
+endpoint_name: diabetes-endpoint
+model:
+  path: azureml:production_model:latest  # Replace with your model name
+instance_type: Standard_E4s_v3
+instance_count: 1
