@@ -41,4 +41,6 @@ jobs:
             --name blue-deployment \
             --endpoint diabetes-endpoint \
             -f src/deployment.yml \
+            --resource-group azure-ml-rg \
+            --workspace-name azure-ml \
             --all-traffic
